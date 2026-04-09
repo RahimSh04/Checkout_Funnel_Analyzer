@@ -614,8 +614,15 @@ funnel_insights = [
 ]
 
 retention_insights = [
-    f"Total number of returning users equals {format_count(data['returning_users'])}.",
-    f"Approximately {non_returning_users_percentage} of users do not return."
+    f"Approximately {display_data['retention_rate']} of users return after their first recorded activity, while {non_returning_users_percentage} do not, indicating a roughly even split between one-time and repeat engagement.",
+    "This suggests that while the platform retains a meaningful portion of users, there is significant room to improve repeat interaction and long-term engagement.",
+]
+
+final_funnel_insights = [
+    f"The largest drop-off occurs between View -> Add to Cart, where approximately {format_percent(view_to_cart_dropoff)} of users do not progress. This indicates that the primary constraint in the funnel happens before checkout begins, not during the purchase step.",
+    f"In contrast, the Add to Cart -> Purchase conversion ({display_data['purchase_conversion']}) is relatively stronger, suggesting that users who reach the cart stage already have meaningful purchase intent.",
+    f"Overall conversion from View -> Purchase is {display_data['overall_conversion']}, meaning only a small fraction of initial user interest translates into completed transactions.",
+    f"Based on current volumes, a 10% improvement in checkout-stage conversion would increase purchases by roughly {format_count(additional_purchases_if_checkout_improves)} additional transactions, indicating meaningful but secondary upside compared to earlier funnel stages.",
 ]
 
 
@@ -703,7 +710,7 @@ def render_funnel_panel() -> None:
         <div class="funnel-shell">
             <div class="panel-title">Funnel Flow</div>
             <div class="panel-copy">
-                This view turns your three funnel steps into a shrinking progression so the drop-offs are immediately visible.
+                This view turns the three funnel steps into a shrinking progression so the drop-offs are immediately visible.
             </div>
             {stage_markup}
         </div>
@@ -832,6 +839,13 @@ with funnel_insights_col:
     )
 
 st.markdown("")
+render_insight_panel(
+    "Funnel Insights",
+    "A final readout of the main funnel constraints and where the upside sits.",
+    final_funnel_insights,
+)
+
+st.markdown("")
 st.markdown('<div id="retention-section"></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-heading">Retention</div>', unsafe_allow_html=True)
 
@@ -845,6 +859,13 @@ with retention_insights_col:
         "Short summary of retention chart results",
         retention_insights,
     )
+
+st.markdown("")
+render_insight_panel(
+    "Retention Insights",
+    "A final readout of the current retention split and what it suggests about repeat engagement.",
+    retention_insights,
+)
 
 st.markdown("")
 st.markdown(

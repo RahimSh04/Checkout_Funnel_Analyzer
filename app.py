@@ -810,10 +810,6 @@ with kpi_6:
 st.markdown("")
 st.markdown('<div id="funnel-section"></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-heading">Funnel Analysis</div>', unsafe_allow_html=True)
-st.markdown(
-    '<div class="section-copy">Use this area for the main funnel graphic and the decision-focused analysis beside it.</div>',
-    unsafe_allow_html=True,
-)
 
 funnel_col, funnel_insights_col = st.columns([1.85, 1], gap="large")
 with funnel_col:
@@ -838,10 +834,6 @@ with funnel_insights_col:
 st.markdown("")
 st.markdown('<div id="retention-section"></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-heading">Retention</div>', unsafe_allow_html=True)
-st.markdown(
-    '<div class="section-copy">Separate retention from the funnel so it answers a different question: who comes back later?</div>',
-    unsafe_allow_html=True,
-)
 
 retention_col, retention_insights_col = st.columns([1.85, 1], gap="large")
 with retention_col:

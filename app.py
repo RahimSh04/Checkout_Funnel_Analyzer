@@ -614,6 +614,10 @@ funnel_insights = [
 ]
 
 retention_insights = [
+    f"{display_data['retention_rate']} of users return while {non_returning_users_percentage} do not.",
+]
+
+final_retention_insights = [
     f"Approximately {display_data['retention_rate']} of users return after their first recorded activity, while {non_returning_users_percentage} do not, indicating a roughly even split between one-time and repeat engagement.",
     "This suggests that while the platform retains a meaningful portion of users, there is significant room to improve repeat interaction and long-term engagement.",
 ]
@@ -864,7 +868,7 @@ st.markdown("")
 render_insight_panel(
     "Retention Insights",
     "A final readout of the current retention split and what it suggests about repeat engagement.",
-    retention_insights,
+    final_retention_insights,
 )
 
 st.markdown("")
